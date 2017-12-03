@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { database, auth } from './firebase';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { database, auth, googleAuthProvider } from './firebase';
+import LoginScreen from './src/screens/LoginScreen';
 
 export default class App extends React.Component {
   handlePress() {
@@ -10,8 +11,12 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Hello There!</Text>
-        <Button onPress={ () => this.handlePress() } styles={styles.button} title="Sing In" />
+        <View style={styles.titleWrapper}>
+          <Text style={styles.titleText}>ParCar</Text>
+        </View>
+        <View>
+          <LoginScreen />
+        </View>
       </View>
     );
   }
@@ -20,12 +25,13 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#DED7C7',
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  button: {
-    borderWidth: .5,
-    borderColor: 'black'
+  titleWrapper: {
+    marginTop: 30
+  },
+  titleText: {
+    fontSize: 50,
   }
 });
