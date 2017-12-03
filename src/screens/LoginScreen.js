@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
 		borderRadius: 10
 	},
 	formInput: { 
-		borderBottomColor: this.state.inputBorderColorDefault,
 		borderBottomWidth: 1,
 		height: 40,
 		borderBottomColor: 'rgba(0,0,0,.3)'
