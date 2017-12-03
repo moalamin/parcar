@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
 export default class LoginScreen extends Component {
 	constructor(props) {
@@ -9,7 +9,10 @@ export default class LoginScreen extends Component {
 	render() {
 		return (
 			<View>
-				<Text>LoginScreen</Text>
+				<Text>email:</Text>
+				<TextInput placeholder='email' />
+				<Text>password:</Text>
+				<TextInput secureTextEntry placeholder='email' />
 			</View>
 		);
 	}

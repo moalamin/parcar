@@ -11,12 +11,10 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.titleWrapper}>
+        <View style={styles.formWrapper}>
           <Text style={styles.titleText}>ParCar</Text>
         </View>
-        <View style={styles.formWrapper}>
-          <LoginScreen />
-        </View>
+        <LoginScreen />
       </View>
     );
   }
@@ -25,19 +23,14 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#DED7C7',
-    alignItems: 'center',
-  },
-  titleWrapper: {
-    marginTop: 50
+    backgroundColor: '#fff',
   },
   titleText: {
     fontSize: 50,
-    fontFamily: 'Optima'
+    fontFamily: 'Damascus',
+    textAlign: 'center'
   },
   formWrapper: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    paddingTop: '35%'
   }
 });
