@@ -20,7 +20,7 @@ export default class LoginScreen extends Component {
 					placeholder="Email"
 				/>
 				<TextInput 
-						style={style.formInput}
+						style={styles.formInput}
 						secureTextEntry
 						placeholder="Password" />
 				<View style={{ marginTop: 20, alignItems: 'center' }}>
