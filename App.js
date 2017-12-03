@@ -11,10 +11,12 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.formWrapper}>
+        <View style={styles.loginWrapper}>
           <Text style={styles.titleText}>ParCar</Text>
         </View>
-        <LoginScreen />
+        <View style={styles.formWrapper}>
+          <LoginScreen />
+        </View>
       </View>
     );
   }
@@ -30,7 +32,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Damascus',
     textAlign: 'center'
   },
+  loginWrapper: {
+    marginTop: '45%'
+  },
   formWrapper: {
-    paddingTop: '35%'
+    marginTop: 15,
+    marginLeft: '5%',
+    marginRight: '5%',
+    borderWidth: 1,
+    borderColor: 'rgba(37, 38, 34, .5)',
+    borderRadius: 10,
+    padding: 10
   }
 });
