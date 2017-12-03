@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { database, auth, googleAuthProvider } from './firebase';
+import { database } from './firebase';
 import LoginScreen from './src/screens/LoginScreen';
 
 export default class App extends React.Component {
