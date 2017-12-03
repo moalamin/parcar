@@ -14,7 +14,7 @@ export default class App extends React.Component {
         <View style={styles.titleWrapper}>
           <Text style={styles.titleText}>ParCar</Text>
         </View>
-        <View>
+        <View style={styles.formWrapper}>
           <LoginScreen />
         </View>
       </View>
@@ -29,9 +29,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleWrapper: {
-    marginTop: 30
+    marginTop: 50
   },
   titleText: {
     fontSize: 50,
+    fontFamily: 'Optima'
+  },
+  formWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
