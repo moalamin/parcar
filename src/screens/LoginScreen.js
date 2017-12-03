@@ -5,7 +5,7 @@ export default class LoginScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			inputBorderColorDefault: 'rgba(0,0,0,.1)'
+			
 		};
 	}
 
@@ -15,17 +15,12 @@ export default class LoginScreen extends Component {
 		return (
 			<View>
 				<TextInput
-					style={{ 
-						borderBottomColor: this.state.inputBorderColorDefault,
-						borderBottomWidth: 1,
-						height: 40 }}
+					style={styles.formInput}
 					onFocus={() => null}
 					placeholder="Email"
 				/>
-				<TextInput style={{ 
-						borderBottomColor: this.state.inputBorderColorDefault,
-						borderBottomWidth: 1,
-						height: 40 }}
+				<TextInput 
+						style={style.formInput}
 						secureTextEntry
 						placeholder="Password" />
 				<View style={{ marginTop: 20, alignItems: 'center' }}>
@@ -48,5 +43,11 @@ const styles = StyleSheet.create({
 		width: '70%',
 		padding: 10,
 		borderRadius: 10
+	},
+	formInput: { 
+		borderBottomColor: this.state.inputBorderColorDefault,
+		borderBottomWidth: 1,
+		height: 40,
+		borderBottomColor: 'rgba(0,0,0,.3)'
 	}
 });
