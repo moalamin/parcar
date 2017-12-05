@@ -7,22 +7,26 @@ export default class LoginScreen extends Component {
 		this.state = {
 			
 		};
+		this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleBlur() {}
+	handleChange(e) {
+		console.warn(e)
+	}
 
 	render() {
 		return (
 			<View>
 				<TextInput
 					style={styles.formInput}
-					onFocus={() => null}
 					placeholder="Email"
+					onChangeText={this.handleChange}
 				/>
 				<TextInput 
 						style={styles.formInput}
 						secureTextEntry
-						placeholder="Password" />
+						placeholder="Password"
+						onChangeText={this.handleChange} />
 				<View style={{ marginTop: 20, alignItems: 'center' }}>
 					<TouchableOpacity style={styles.submitButton}>
 						<Text style={{ textAlign: 'center', color: '#DED7C7' }}>Sign In</Text>
