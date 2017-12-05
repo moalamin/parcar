@@ -1,3 +1,3 @@
 import { AppRegistry } from 'react-native';
 import App from './App';
-AppRegistry.registerComponent('parcar', () => App);
+AppRegistry.registerComponent('ParCar', () => App);

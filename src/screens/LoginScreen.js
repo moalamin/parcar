@@ -5,13 +5,23 @@ export default class LoginScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			
+			email: null,
+			password: null	
 		};
-		this.handleChange = this.handleChange.bind(this);
+		this.handleEmail = this.handleEmail.bind(this);
+		this.handlePassword = this.handlePassword.bind(this);
 	}
 
-	handleChange(e) {
-		console.warn(e)
+	handleEmail(e) {
+		this.setState({
+			email: e
+		})
+	}
+
+	handlePassword(e) {
+		this.setState({
+			password: e
+		})	
 	}
 
 	render() {
@@ -20,13 +30,13 @@ export default class LoginScreen extends Component {
 				<TextInput
 					style={styles.formInput}
 					placeholder="Email"
-					onChangeText={this.handleChange}
+					onChangeText={this.handleEmail}
 				/>
 				<TextInput 
 						style={styles.formInput}
 						secureTextEntry
 						placeholder="Password"
-						onChangeText={this.handleChange} />
+						onChangeText={this.handlePassword} />
 				<View style={{ marginTop: 20, alignItems: 'center' }}>
 					<TouchableOpacity style={styles.submitButton}>
 						<Text style={{ textAlign: 'center', color: '#DED7C7' }}>Sign In</Text>
