@@ -2,8 +2,8 @@ import {auth} from '../../firebase';
 import {saveToAsyncStorage} from '../utils/auth';
 
 export const LOGIN_USER = 'LOGIN_USER';
-export function loginUser(email, password) {
-  return (dispatch)=>{
+export const loginUser = (email, password) => {
+  return (dispatch) => {
     auth.signInWithEmailAndPassword(email, password)
       .then(user=>{
         dispatch(storeUser(user))   
@@ -15,7 +15,7 @@ export function loginUser(email, password) {
 }
 
 export const SET_USER = 'SET_USER';
-export function setUser(user) {
+export const setUser = (user) => {
   return {
     type: SET_USER,
     payload: user
@@ -23,7 +23,7 @@ export function setUser(user) {
 }
 
 export const STORE_USER = 'STORE_USER';
-export function storeUser(user) {
+export const storeUser = (user) => {
   return (dispatch) => {
     // raw user object as param
     saveToAsyncStorage(user)

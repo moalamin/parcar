@@ -9,7 +9,7 @@ import {
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { auth } from "../../firebase";
-import { loginUser } from "../actions/auth.actions";
+import {loginUser} from "../actions/auth.actions";
 
 class LoginScreen extends Component {
 	constructor(props) {
@@ -21,6 +21,9 @@ class LoginScreen extends Component {
 		this.handleEmail = this.handleEmail.bind(this);
 		this.handlePassword = this.handlePassword.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	componentWillMount(){
 	}
 
 	handleEmail(e) {
@@ -42,8 +45,8 @@ class LoginScreen extends Component {
 
 	render() {
 		return (
-			<View style={{flex:1,justifyContent:'center'}}>
-				<Text style={{textAlign:"center",fontSize:50}}>ParCar</Text>
+			<View style={{ flex: 1, justifyContent: "center" }}>
+				<Text style={{ textAlign: "center", fontSize: 50 }}>ParCar</Text>
 				<View style={styles.formWrapper}>
 					<TextInput
 						style={styles.formInput}
@@ -99,13 +102,11 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-	return {};
+	return({});
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		actions: bindActionCreators(loginUser, dispatch)
-	};
+	return {actions: bindActionCreators({loginUser}, dispatch)};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
