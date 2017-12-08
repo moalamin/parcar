@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import {auth} from '../../firebase';
 
 export default class LoginScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: null,
-			password: null	
+			email: '',
+			password: ''	
 		};
 		this.handleEmail = this.handleEmail.bind(this);
 		this.handlePassword = this.handlePassword.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleEmail(e) {
@@ -22,6 +24,19 @@ export default class LoginScreen extends Component {
 		this.setState({
 			password: e
 		})	
+	}
+
+	handleSubmit() {
+		let email = this.state.email;
+		let pass = this.state.password;
+
+		auth.signInWithEmailAndPassword(email, pass)
+			.then(user=>{
+				console.warn(user)
+			})
+			.catch(e=>{
+				console.warn(e)
+			})
 	}
 
 	render() {
@@ -38,7 +53,7 @@ export default class LoginScreen extends Component {
 						placeholder="Password"
 						onChangeText={this.handlePassword} />
 				<View style={{ marginTop: 20, alignItems: 'center' }}>
-					<TouchableOpacity style={styles.submitButton}>
+					<TouchableOpacity onPress={this.handleSubmit} style={styles.submitButton}>
 						<Text style={{ textAlign: 'center', color: '#DED7C7' }}>Sign In</Text>
 					</TouchableOpacity>
 				</View>
