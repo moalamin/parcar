@@ -41,6 +41,8 @@ class LoginScreen extends Component {
 	handleSubmit() {
 		let email = this.state.email;
 		let pass = this.state.password;
+
+		this.props.actions.loginUser(email, pass)
 	}
 
 	render() {
