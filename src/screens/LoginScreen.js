@@ -72,6 +72,12 @@ class LoginScreen extends Component {
 						</TouchableOpacity>
 					</View>
 				</View>
+				<Text style={{textAlign: 'center', marginTop: 20}}>
+					Don't have an account? 
+				</Text>
+				<TouchableOpacity onPress={()=>{console.log(this.props); this.props.navigation.navigate('Register')}}>
+					<Text style={{textAlign: 'center'}}> Sign Up </Text>
+				</TouchableOpacity>
 			</View>
 		);
 	}
