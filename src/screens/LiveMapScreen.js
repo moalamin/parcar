@@ -5,26 +5,27 @@ import MapView from "react-native-maps";
 export default class LiveMapScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      region: {
-        latitude: 40.7128,
-        longitude: -74.0060,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421
-      }
-    };
-  }
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition((location, err) => {
-      console.log(location);
+    let lat = null;
+    let long = null;
+    navigator.geolocation.getCurrentPosition((location)=>{
+      console.log(location)
+      lat=location.coords.latitude;
+      long=location.coords.longitude;
     });
+    this.state = {
+      latitude: lat,
+      longitude: long,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }
   }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
         <MapView 
           style={{ width: "100%", height: "100%" }} 
-          initialRegion={this.state.region}/>
+          region={this.state.region}/>
       </View>
     );
   }
