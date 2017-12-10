@@ -6,7 +6,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_USER: {
-      console.log(action.payload)
       const newState = Object.assign({}, state, {user_data: action.payload})
       return newState;
     }
