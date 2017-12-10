@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { StackNavigator, TabNavigator } from "react-navigation";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {checkStorageUser} from '../actions/auth.actions';
 import LoginScreen from "./LoginScreen";
 import RegistrationScreen from "./RegistrationScreen";
 import LiveMapScreen from "./LiveMapScreen";
@@ -33,7 +34,7 @@ class AppHomeScreen extends Component {
     super(props);
   }
   componentWillMount() {
-    console.log(this.props);
+    this.props.actions.checkStorageUser();
   }
   render() {
     return (
@@ -48,4 +49,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(AppHomeScreen);
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators({checkStorageUser}, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppHomeScreen);

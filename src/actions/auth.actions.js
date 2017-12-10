@@ -1,5 +1,5 @@
 import {auth} from '../../firebase';
-import {saveToAsyncStorage} from '../utils/auth';
+import {saveToAsyncStorage, checkAsyncStorageForUser} from '../utils/auth';
 
 export const LOGIN_USER = 'LOGIN_USER';
 export const loginUser = (email, password) => {
@@ -30,5 +30,17 @@ export const storeUser = (user) => {
     .then(()=>{
       dispatch(setUser(user))
     });
+  }
+}
+
+export const CHECK_ASYNC_USER = 'CHECK_ASYNC_USER';
+export const checkStorageUser = () => {
+  return (dispatch) => {
+    checkAsyncStorageForUser()
+      .then(response=>{
+        if(response) {
+          dispatch(setUser(JSON.parse(response)))
+        }
+      })
   }
 }
