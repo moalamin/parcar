@@ -1,36 +1,51 @@
-
-import React, {Component} from 'react';
-import {View} from 'react-native'
-import { StackNavigator, TabNavigator } from 'react-navigation';
-import LoginScreen from './LoginScreen';
-import RegistrationScreen from './RegistrationScreen';
-import LiveMapScreen from './LiveMapScreen';
+import React, { Component } from "react";
+import { View } from "react-native";
+import { StackNavigator, TabNavigator } from "react-navigation";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import LoginScreen from "./LoginScreen";
+import RegistrationScreen from "./RegistrationScreen";
+import LiveMapScreen from "./LiveMapScreen";
 
 const RootNavigator = StackNavigator({
   Login: {
     screen: LoginScreen,
     navigationOptions: {
-      headerTitle: 'Log In',
+      headerTitle: "Log In"
     }
   },
   Register: {
     screen: RegistrationScreen,
     navigationOptions: {
-      headerTitle: 'Register',
-    },
-  },
+      headerTitle: "Register"
+    }
+  }
 });
 
 const RootTabs = TabNavigator({
   LiveMap: {
-    screen: LiveMapScreen,
-  },
+    screen: LiveMapScreen
+  }
 });
 
-export default class AppHomeScreen extends Component {
+class AppHomeScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+    console.log(this.props);
+  }
   render() {
     return (
-      <RootNavigator />
-    )
+      <View style={{flex: 1}}>{this.props.user.user_data ? <RootTabs /> : <RootNavigator />}</View>
+    );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(AppHomeScreen);

@@ -3,6 +3,6 @@ import {Text} from 'react-native';
 
 export default class LiveMapScreen extends Component {
   render() {
-    <Text>Live map placeholder...</Text>
+    return <Text>Live map placeholder...</Text>
   }
 }
