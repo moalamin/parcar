@@ -5,3 +5,11 @@ export const onRegionChange = (region) => {
     payload: region
   }
 }
+
+export const SET_REGION = 'SET_REGION';
+export const setRegion = (region) => {
+  return {
+    type: SET_REGION,
+    payload: region
+  }
+}
