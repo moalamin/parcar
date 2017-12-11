@@ -28,24 +28,22 @@ export default class LiveMapScreen extends Component {
     this.setState({ region });
   }
   markSpot(e) {
-    console.log(e.nativeEvent.coordinate.latitude)
+    console.log(e.nativeEvent.coordinate.latitude);
     let lat = e.nativeEvent.coordinate.latitude;
     let long = e.nativeEvent.coordinate.longitude;
     let that = this;
-    navigator.geolocation.getCurrentPosition(location => {
-      that.setState(prevState => {
-        let currentSpot = Object.assign({}, prevState, {
-          markers: prevState.markers.concat({
-            latlng: {
-              latitude: lat,
-              longitude: long
-            }
+    that.setState(prevState => {
+      let currentSpot = Object.assign({}, prevState, {
+        markers: prevState.markers.concat({
+          latlng: {
+            latitude: lat,
+            longitude: long
           }
-          )
-        });
-        return currentSpot;
+        })
       });
+      return currentSpot;
     });
+    navigator.geolocation.getCurrentPosition(location => {});
   }
   render() {
     return (
@@ -66,7 +64,9 @@ export default class LiveMapScreen extends Component {
           showsMyLocationButton={true}
           onRegionChange={this.onRegionChange}
           region={this.state.region}
-          onLongPress={(e)=>{this.markSpot(e)}}
+          onLongPress={e => {
+            this.markSpot(e);
+          }}
         >
           {this.state.markers.map((marker, index) => (
             <MapView.Marker
@@ -89,7 +89,6 @@ export default class LiveMapScreen extends Component {
         >
           <TouchableHighlight
             style={{ backgroundColor: "rgba(0, 200, 100, .5)", width: "80%" }}
-            onPress={this.markSpot}
           >
             <Text style={{ textAlign: "center" }}>Mark a Spot</Text>
           </TouchableHighlight>

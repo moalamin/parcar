@@ -9,7 +9,8 @@ export default (state = initialState, action) => {
       const newState = Object.assign({}, state, {user_data: action.payload})
       return newState;
     }
-    default:
+    default: {
       return state;
+    }
   }
 };
