@@ -17,8 +17,8 @@ class LiveMapScreen extends Component {
       this.props.actions.setRegion({
         latitude: lat,
         longitude: long,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.008
       });
     });
   }
@@ -42,16 +42,7 @@ class LiveMapScreen extends Component {
           onRegionChange={region => {
             this.props.actions.onRegionChange(region);
           }}
-          region={
-            this.props.map.region
-              ? this.props.map.region
-              : {
-                  latitude: 37.78825,
-                  longitude: -122.4324,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421
-                }
-          }
+          region={this.props.map.region}
         />
         <View
           style={{
