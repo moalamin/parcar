@@ -16,7 +16,7 @@ class LiveMapScreen extends Component {
   constructor(props) {
     super(props);
     this.props.actions.setInstructionMessage(
-      "Press and hold a location to mark a spot or select pins to dismiss. You must be within 200 feet of markers."
+      "Press and hold a location to mark a spot or select pins to dismiss. You must be within 300 feet of markers."
     );
   }
   componentDidMount() {
