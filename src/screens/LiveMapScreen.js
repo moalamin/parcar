@@ -8,8 +8,8 @@ export default class LiveMapScreen extends Component {
     this.state = {
       latitude: 0,
       longitude: 0,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421
+      latitudeDelta: 0.0822,
+      longitudeDelta: 0.0321
     };
     this.onRegionChange = this.onRegionChange.bind(this);
   }
@@ -21,8 +21,8 @@ export default class LiveMapScreen extends Component {
         region: {
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421
+          latitudeDelta: 0.0822,
+          longitudeDelta: 0.0321
         }
       });
     });
@@ -32,9 +32,12 @@ export default class LiveMapScreen extends Component {
   }
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center'  }}>
+      <View style={{ flex: 1, justifyContent: 'flex-end'  }}>
+        <View style={{width: '100%', height: '7%', backgroundColor: 'coral'}}>
+          <Text style={{textAlign: 'center'}}>Information text here...</Text>
+        </View>
         <MapView
-          style={{ width: "100%", height: "80%"}}
+          style={{ width: "100%", height: "90%"}}
           showsUserLocation={true}
           showsMyLocationButton={true}
           onRegionChange={this.onRegionChange}
