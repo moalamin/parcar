@@ -1,3 +1,5 @@
+import axios from 'axios';
+import {gDistanceApiKey, gDistanceApiEndpoint} from '../../config';
 import {getUserLocation} from '../utils/location';
 
 export const ON_REGION_CHANGE = 'ON_REGION_CHANGE';
@@ -29,7 +31,7 @@ export const checkDistanceAndMarkSpot = (coordinate) => {
   return (dispatch) => {
     dispatch(setInstructionMessage('Validating...'));
     getUserLocation(location=>{
-      
+      axios.get()
     })
   }
 }

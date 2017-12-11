@@ -47,7 +47,7 @@ class LiveMapScreen extends Component {
         <MapView
           style={{ width: "100%", height: "85%" }}
           onLongPress={e => {
-            this.props.actions.setMarker(e.nativeEvent.coordinate);
+            this.props.actions.checkDistanceAndMarkSpot(e.nativeEvent.coordinate);
           }}
           showsUserLocation={true}
           followsUserLocation={true}
