@@ -2,11 +2,13 @@ import {
   ON_REGION_CHANGE,
   SET_REGION,
   SET_INSTRUCTION_MESSAGE,
-  SET_MARKER
+  SET_MARKER,
+  SET_USER_MARKER
 } from "../../actions/map.actions";
 
 let initialState = {
   markers: [],
+  userMarker: [],
   instructionMessage: ""
 };
 
@@ -30,10 +32,20 @@ export default (state = initialState, action) => {
       let newState = Object.assign({}, state, {
         markers: state.markers.concat({
           latlng: action.payload,
-          title: 'Empty Spot'
+          title: 'Parking Spot'
         })
       });
       return newState;
+    }
+    case SET_USER_MARKER: {
+      let newState = Object.assign({}, state, {
+        userMarker: [{
+          latlng: action.payload,
+          key: 'user_marker_key',
+          title: 'Your Location'
+        }]
+      })
+      return newState
     }
     default: {
       return state;

@@ -51,7 +51,7 @@ export const checkDistanceAndMarkSpot = coordinate => {
             dispatch(setMarker(coordinate));
             dispatch(setInstructionMessage("You marked a spot, thanks for helping your neighbors!"));
           } else {
-            dispatch(setInstructionMessage("You are too far away to mark that spot."));
+            dispatch(setInstructionMessage("You must be within 300 feet the spot you are marking."));
           }
         })
         .catch(e => {
@@ -68,3 +68,23 @@ export const setMarker = latlng => {
     payload: latlng
   };
 };
+
+export const MARK_MY_SPOT = 'MARK_MY_SPOT';
+export const markMySpot = () => {
+  return dispatch => {
+    getUserLocation(location => {
+      dispatch(setMarker({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude
+      }))
+    })
+  }
+}
+
+export const SET_USER_MARKER = 'SET_USER_MARKER';
+export const setUserMarker = (location) => {
+  return {
+    type: SET_USER_MARKER,
+    payload: location
+  }
+}

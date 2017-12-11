@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TouchableHighlight } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import MapView from "react-native-maps";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -8,7 +8,9 @@ import {
   setRegion,
   setInstructionMessage,
   checkDistanceAndMarkSpot,
-  setMarker
+  setMarker,
+  markMySpot,
+  setUserMarker
 } from "../actions/map.actions";
 import { getUserLocation } from "../utils/location";
 
@@ -16,7 +18,7 @@ class LiveMapScreen extends Component {
   constructor(props) {
     super(props);
     this.props.actions.setInstructionMessage(
-      "Press and hold a location to mark a spot or select pins to dismiss. You must be within 300 feet of markers."
+      "Mark a spot, drop a pin at your location or dismiss markers."
     );
   }
   componentDidMount() {
@@ -27,6 +29,10 @@ class LiveMapScreen extends Component {
         latitudeDelta: 0.005,
         longitudeDelta: 0.009
       });
+      this.props.actions.setUserMarker({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude
+      })
     });
   }
   render() {
@@ -45,13 +51,12 @@ class LiveMapScreen extends Component {
           </Text>
         </View>
         <MapView
-          style={{ width: "100%", height: "85%" }}
+          style={{ width: "100%", height: "80%" }}
           onLongPress={e => {
-            this.props.actions.checkDistanceAndMarkSpot(e.nativeEvent.coordinate);
+            this.props.actions.checkDistanceAndMarkSpot(
+              e.nativeEvent.coordinate
+            );
           }}
-          showsUserLocation={true}
-          followsUserLocation={true}
-          showsMyLocationButton={true}
           onRegionChange={region => {
             this.props.actions.onRegionChange(region);
           }}
@@ -61,12 +66,40 @@ class LiveMapScreen extends Component {
             <MapView.Marker
               key={index}
               draggable
+              pinColor="green"
               coordinate={marker.latlng}
               title={marker.title}
               description={marker.description}
             />
           ))}
+          {this.props.map.userMarker.map((marker, index) => (
+            <MapView.Marker
+              coordinate={marker.latlng}
+              key={marker.key}
+              draggable
+              pinColor="blue"
+              coordinate={marker.latlng}
+              title={marker.title}
+            />
+          ))}
         </MapView>
+        <View
+          style={{
+            width: "100%",
+            height: "5%",
+            backgroundColor: "green",
+            justifyContent: "center"
+          }}
+        >
+          <TouchableOpacity
+            style={{ width: "100%", height: "100%", justifyContent: "center" }}
+            onPress={this.props.actions.markMySpot}
+          >
+            <Text style={{ textAlign: "center" }}>
+              Drop a pin at my location.
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -86,7 +119,9 @@ const mapDispatchToProps = dispatch => {
         setRegion,
         setInstructionMessage,
         checkDistanceAndMarkSpot,
-        setMarker
+        setMarker,
+        markMySpot,
+        setUserMarker
       },
       dispatch
     )
