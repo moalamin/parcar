@@ -23,17 +23,23 @@ class LiveMapScreen extends Component {
   }
   componentDidMount() {
     getUserLocation(location => {
+      this.props.actions.setUserMarker({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude
+      });
       this.props.actions.setRegion({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
         latitudeDelta: 0.005,
         longitudeDelta: 0.009
       });
+    });
+    navigator.geolocation.watchPosition((location)=>{
       this.props.actions.setUserMarker({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude
-      })
-    });
+      });
+    })
   }
   render() {
     return (
@@ -76,7 +82,6 @@ class LiveMapScreen extends Component {
             <MapView.Marker
               coordinate={marker.latlng}
               key={marker.key}
-              draggable
               pinColor="blue"
               coordinate={marker.latlng}
               title={marker.title}

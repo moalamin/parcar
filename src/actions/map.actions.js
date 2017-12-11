@@ -46,7 +46,6 @@ export const checkDistanceAndMarkSpot = coordinate => {
         .then(response => {
           const distanceFromMarker =
             response.data.rows[0].elements[0].distance.value;
-          console.log(distanceFromMarker);
           if (distanceFromMarker <= 92) {
             dispatch(setMarker(coordinate));
             dispatch(setInstructionMessage("You marked a spot, thanks for helping your neighbors!"));
