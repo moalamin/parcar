@@ -4,23 +4,21 @@ import MapView from "react-native-maps";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { onRegionChange, setRegion } from "../actions/map.actions";
+import { getUserLocation } from "../utils/location";
 
 class LiveMapScreen extends Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(postion => {
-      let lat = postion.coords.latitude;
-      let long = postion.coords.longitude;
-      console.log('lat', lat, 'long', long)
+    getUserLocation(location=>{
       this.props.actions.setRegion({
-        latitude: lat,
-        longitude: long,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.008
-      });
-    });
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: .005,
+        longitudeDelta: .009 
+      })
+    })
   }
   render() {
     return (
