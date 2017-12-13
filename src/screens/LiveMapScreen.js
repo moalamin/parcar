@@ -86,9 +86,7 @@ class LiveMapScreen extends Component {
               coordinate={marker.latlng}
               title={marker.title}
             >
-              <View>
-                <Text>You</Text>
-              </View>
+              <View style={{width: 20, height: 20, backgroundColor: 'lightgreen', borderRadius: 10}} />
             </MapView.Marker>
           ))}
         </MapView>
