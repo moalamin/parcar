@@ -85,7 +85,11 @@ class LiveMapScreen extends Component {
               pinColor="blue"
               coordinate={marker.latlng}
               title={marker.title}
-            />
+            >
+              <View>
+                <Text>You</Text>
+              </View>
+            </MapView.Marker>
           ))}
         </MapView>
         <View
